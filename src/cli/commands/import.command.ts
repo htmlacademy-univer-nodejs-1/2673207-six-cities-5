@@ -1,8 +1,11 @@
 import { Commander } from "./command.interface";
 
 export class ImportCommander implements Commander {
-  execute(...params: String[]): void {
-    throw new Error("Method not implemented.");
+  public getName(): string {
+    return "--import";
   }
 
+  public async execute(...params: String[]): Promise<void> {
+    console.log("Import command executes")
+  }
 }
