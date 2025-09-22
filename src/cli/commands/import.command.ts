@@ -8,6 +8,9 @@ export class ImportCommander implements Commander {
 
   public async execute(...params: String[]): Promise<void> {
     const [filename] = params;
+    if (filename === undefined) {
+      throw new Error("file path is not specified")
+    }
     const fileReader = new TSVFileReader(filename.trim());
 
     try {
@@ -21,7 +24,6 @@ export class ImportCommander implements Commander {
 
       console.error(`Can't import data from file: ${filename}`);
       console.error(`Details: ${err.message}`);
-      console.trace();
     }
   }
 }

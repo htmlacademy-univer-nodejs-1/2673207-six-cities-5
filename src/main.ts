@@ -8,7 +8,11 @@ function bootstrap() {
     new VersionCommander(),
     new ImportCommander(),
   ]);
-  cliApplication.processCommand(process.argv);
+  cliApplication.processCommand(process.argv)
+    .catch((err) => {
+      console.info("error:", err.message);
+    });
+
 }
 
 bootstrap()
