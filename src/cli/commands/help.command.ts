@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { Commander } from "./command.interface.js";
 
 export class HelpCommander implements Commander {
@@ -6,14 +7,14 @@ export class HelpCommander implements Commander {
   }
 
   public async execute(..._params: String[]): Promise<void> {
-    console.info(`Программа для подготовки данных для REST API сервера.
+    console.info(chalk.bold.italic.underline('Программа для подготовки данных для REST API сервера.'));
+    console.info(" ");
+    console.info(`${chalk.underline("Пример")}: ${chalk.cyan("cli.js --<command> [--arguments]")}
 
-Пример: cli.js --<command> [--arguments]
+${chalk.underline("Команды")}:
 
-Команды:
-
- --version:                   # выводит номер версии
- --help:                      # печатает этот текст
- --import <path>:             # импортирует данные из TSV`);
+${chalk.cyan("--version                       # выводит номер версии")}:
+${chalk.cyan("--help                          # печатает этот текст")}:
+${chalk.cyan("--import <path>                 # импортирует данные из TSV")}:`);
   }
 }
