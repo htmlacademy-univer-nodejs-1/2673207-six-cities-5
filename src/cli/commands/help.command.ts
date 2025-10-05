@@ -15,6 +15,7 @@ ${chalk.underline("Команды")}:
 
 ${chalk.cyan("--version                       # выводит номер версии")}:
 ${chalk.cyan("--help                          # печатает этот текст")}:
-${chalk.cyan("--import <path>                 # импортирует данные из TSV")}:`);
+${chalk.cyan("--import <path>                 # импортирует данные из TSV")}:
+${chalk.cyan("--generate <n> <path> <url>     # генерирует произвольное количество тестовых данных")}`);
   }
 }
