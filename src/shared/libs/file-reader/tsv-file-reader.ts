@@ -15,7 +15,7 @@ export class TSVFileReader implements FileReader {
 
   private parseConveniences(conveniencesString: string): ConvenientType[] {
     try {
-      const stringArray: string[] = JSON.parse(conveniencesString);
+      const stringArray = conveniencesString.split(';');
 
       return stringArray
         .map(str => {
@@ -53,7 +53,7 @@ export class TSVFileReader implements FileReader {
           publishData: new Date(publishData),
           city: city as City,
           image,
-          photo: JSON.parse(photo) as string[],
+          photo: photo.split(';'),
           premium: premium === 'true',
           favourite: favourite === 'true',
           rating: parseFloat(rating),
@@ -64,7 +64,7 @@ export class TSVFileReader implements FileReader {
           conveniences: this.parseConveniences(conveniences),
           user: {name: userName, email: userEmail, avatar: userAvatar, password: userPassword, type: userType as 'обычный' | 'pro'},
           commentsCount: parseInt(commentsCount),
-          coordinates: JSON.parse(coordinates) as number[]
+          coordinates: coordinates.split(';').map(c => parseInt(c))
       }
     ));
   }

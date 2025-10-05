@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import { getRandomItem, generateRandomValue, getRandomItems } from "../../helpers";
-import { MockServerData } from "../../types";
-import { OfferGenerator } from "./offer-generator.interface";
+import { getRandomItem, generateRandomValue, getRandomItems } from "../../helpers/index.js";
+import { MockServerData } from "../../types/index.js";
+import { OfferGenerator } from "./offer-generator.interface.js";
 
 const FIRST_WEEK_DAY = 1;
 const LAST_WEEK_DAY = 7;
@@ -39,13 +39,13 @@ export class TSVOfferGenerator implements OfferGenerator {
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
     const city = getRandomItem(this.mockData.cities)
-    const photoLinks = getRandomItems(this.mockData.photoLinks);
+    const photoLinks = getRandomItems(this.mockData.photoLinks).join(";");
     const previewImage = getRandomItem(this.mockData.previewImages);
     const premium = generateRandomValue(0, 1) === 0;
     const favorite = generateRandomValue(0, 1) === 0;
     const rate = generateRandomValue(MIN_RATE, MAX_RATE);
     const houseType = getRandomItem(this.mockData.housingTypes);
-    const convenientTypes = getRandomItems(this.mockData.convenientTypes);
+    const convenientTypes = getRandomItems(this.mockData.convenientTypes).join(";");
     const roomCount = generateRandomValue(MIN_ROOM_COUNT, MAX_ROOM_COUNT);
     const guestCount = generateRandomValue(MIN_GUEST_COUNT, MAX_GUEST_COUNT);
     const rentalPrice = generateRandomValue(MIN_RENTAL_PRICE, MAX_RENTAL_PRICE);
@@ -59,22 +59,22 @@ export class TSVOfferGenerator implements OfferGenerator {
     const commentsCount = generateRandomValue(MIN_COMMENT_COUNT, MAC_COMMENT_COUNT);
     const latitude = generateRandomValue(MIN_LATITUDE, MAX_LATITUDE, 6);
     const longitude = generateRandomValue(MIN_LONGITUDE, MAX_LONGITUDE, 6);
-    const location = [latitude, longitude];
+    const location = [latitude, longitude].join(";");
     return [
       title,
       description,
       publishDate,
       city,
-      photoLinks,
       previewImage,
+      photoLinks,
       premium,
       favorite,
       rate,
       houseType,
-      convenientTypes,
       roomCount,
       guestCount,
       rentalPrice,
+      convenientTypes,
       userName,
       userEmail,
       userAvatar,

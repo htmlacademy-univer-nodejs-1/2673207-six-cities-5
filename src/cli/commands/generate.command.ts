@@ -1,8 +1,8 @@
 import got from "got";
 
-import { MockServerData } from "../../shared/types";
-import { Commander } from "./command.interface";
-import { TSVOfferGenerator } from "../../shared/libs/offer-generator/tsv-offer-generator";
+import { MockServerData } from "../../shared/types/index.js";
+import { Commander } from "./command.interface.js";
+import { TSVOfferGenerator } from "../../shared/libs/offer-generator/tsv-offer-generator.js";
 import { appendFile } from "node:fs/promises";
 
 export class GenerateCommand implements Commander {
@@ -34,7 +34,6 @@ export class GenerateCommand implements Commander {
   public async execute(...params: string[]): Promise<void> {
     const [count, filePath, url] = params;
     const offerCount = Number.parseInt(count, 10);
-
     try {
       await this.load(url);
       await this.write(filePath, offerCount)
