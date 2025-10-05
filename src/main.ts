@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { GenerateCommand } from "./cli/commands/generate.command.js";
-import { CLIApplication, HelpCommander, ImportCommander, VersionCommander } from "./cli/index.js";
+import { GenerateCommand } from './cli/commands/generate.command.js';
+import { CLIApplication, HelpCommander, ImportCommander, VersionCommander } from './cli/index.js';
 
 function bootstrap() {
   const cliApplication = new CLIApplication();
@@ -12,9 +12,9 @@ function bootstrap() {
   ]);
   cliApplication.processCommand(process.argv)
     .catch((err) => {
-      console.info("error:", err.message);
+      console.info('error:', err.message);
     });
 
 }
 
-bootstrap()
+bootstrap();

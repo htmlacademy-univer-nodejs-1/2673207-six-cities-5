@@ -1,8 +1,8 @@
-import got from "got";
+import got from 'got';
 
-import { MockServerData } from "../../shared/types/index.js";
-import { Commander } from "./command.interface.js";
-import { TSVOfferGenerator } from "../../shared/libs/offer-generator/tsv-offer-generator.js";
+import { MockServerData } from '../../shared/types/index.js';
+import { Commander } from './command.interface.js';
+import { TSVOfferGenerator } from '../../shared/libs/offer-generator/tsv-offer-generator.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
 
 export class GenerateCommand implements Commander {
@@ -33,9 +33,9 @@ export class GenerateCommand implements Commander {
     const offerCount = Number.parseInt(count, 10);
     try {
       await this.load(url);
-      await this.write(filePath, offerCount)
+      await this.write(filePath, offerCount);
     } catch (error: unknown) {
-      console.error("Can't generate data");
+      console.error('Can\'t generate data');
       if (error instanceof Error) {
         console.error(error.message);
       }
