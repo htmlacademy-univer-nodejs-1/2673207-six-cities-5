@@ -1,94 +1,108 @@
 {
   "api": {
     "titles": [
-      "Уютная студия в центре",
-      "Современный лофт с панорамным видом",
-      "Апартаменты у моря",
-      "Загородный дом с камином",
-      "Стильная квартира в историческом здании",
-      "Бунгало в тропическом саду",
-      "Пентхаус с террасой",
-      "Эко-домик в лесу"
+      "Modern City Loft",
+      "Cozy Garden Cottage",
+      "Luxury Penthouse View",
+      "Charming Historic Flat",
+      "Minimalist Studio Space",
+      "Seaside Villa Retreat",
+      "Mountain View Cabin",
+      "Downtown Artistic Suite"
     ],
     "descriptions": [
-      "Уютная студия в самом сердце города. Идеально подходит для пары или самостоятельного путешественника. В шаговой доступности основные достопримечательности.",
-      "Просторный лофт с панорамными окнами и видом на город. Современный ремонт, высокие потолки, полностью оборудованная кухня.",
-      "Апартаменты с видом на море. Всего 5 минут до пляжа. В наличии все необходимое для комфортного отдыха у моря.",
-      "Уютный загородный дом с камином и садом. Идеальное место для отдыха от городской суеты. Рядом лес и озеро.",
-      "Стильная квартира в отреставрированном историческом здании. Сохранен оригинальный паркет и лепнина, при этом все современные удобства.",
-      "Уединенное бунгало в тропическом саду. Бассейн, зона отдыха и все необходимое для релаксации.",
-      "Роскошный пентхаус с просторной террасой и видом на весь город. Премиальная отделка и техника.",
-      "Эко-домик в заповедном лесу. Полное единение с природой при комфортных условиях проживания."
+      "A beautifully designed space with modern amenities and stunning city views. Perfect for both short stays and longer visits.",
+      "Nestled in a quiet neighborhood, this property offers tranquility while being close to all major attractions and transportation.",
+      "Recently renovated with high-end finishes, this home combines comfort with sophisticated style and practical living.",
+      "Experience the local culture from this centrally located property that puts the best of the city at your doorstep.",
+      "Bright and airy spaces with thoughtful details that make every stay memorable and comfortable for all guests.",
+      "Professional cleaning and sanitization between each booking ensures a safe and hygienic environment for your stay."
+    ],
+    "cities": [
+      "Paris",
+      "Amsterdam",
+      "Cologne",
+      "Brussels",
+      "Dusseldorf",
+      "Hamburg"
+    ],
+    "photoLinks": [
+      "https://assets/living-room-1.jpg",
+      "https://assets/kitchen-modern.jpg",
+      "https://assets/bedroom-cozy.jpg",
+      "https://assets/bathroom-luxury.jpg",
+      "https://assets/balcony-view.jpg",
+      "https://assets/exterior-building.jpg",
+      "https://assets/amenities-pool.jpg",
+      "https://assets/workspace-area.jpg"
     ],
     "previewImages": [
-      "https://example.com/preview/studio-1.jpg",
-      "https://example.com/preview/loft-1.jpg",
-      "https://example.com/preview/sea-apartment-1.jpg",
-      "https://example.com/preview/country-house-1.jpg",
-      "https://example.com/preview/historic-apartment-1.jpg",
-      "https://example.com/preview/bungalow-1.jpg",
-      "https://example.com/preview/penthouse-1.jpg",
-      "https://example.com/preview/eco-house-1.jpg"
+      "https://assets/preview-main-1.jpg",
+      "https://assets/preview-main-2.jpg",
+      "https://assets/preview-main-3.jpg",
+      "https://assets/preview-main-4.jpg",
+      "https://assets/preview-main-5.jpg",
+      "https://assets/preview-main-6.jpg",
+      "https://assets/preview-main-7.jpg"
     ],
-    "images": [
-      "https://example.com/images/studio-1.jpg",
-      "https://example.com/images/studio-2.jpg",
-      "https://example.com/images/studio-3.jpg",
-      "https://example.com/images/loft-1.jpg",
-      "https://example.com/images/loft-2.jpg",
-      "https://example.com/images/loft-3.jpg",
-      "https://example.com/images/sea-apartment-1.jpg",
-      "https://example.com/images/sea-apartment-2.jpg",
-      "https://example.com/images/sea-apartment-3.jpg",
-      "https://example.com/images/country-house-1.jpg",
-      "https://example.com/images/country-house-2.jpg",
-      "https://example.com/images/country-house-3.jpg",
-      "https://example.com/images/historic-apartment-1.jpg",
-      "https://example.com/images/historic-apartment-2.jpg",
-      "https://example.com/images/historic-apartment-3.jpg",
-      "https://example.com/images/bungalow-1.jpg",
-      "https://example.com/images/bungalow-2.jpg",
-      "https://example.com/images/bungalow-3.jpg",
-      "https://example.com/images/penthouse-1.jpg",
-      "https://example.com/images/penthouse-2.jpg",
-      "https://example.com/images/penthouse-3.jpg",
-      "https://example.com/images/eco-house-1.jpg",
-      "https://example.com/images/eco-house-2.jpg",
-      "https://example.com/images/eco-house-3.jpg"
+    "convenientTypes": [
+      "Washer",
+      "Towels",
+      "Fridge",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Breakfast"
     ],
-    "locations": [
-      {
-        "latitude": 55.755826,
-        "longitude": 37.617300
-      },
-      {
-        "latitude": 59.934280,
-        "longitude": 30.335098
-      },
-      {
-        "latitude": 43.585525,
-        "longitude": 39.723062
-      },
-      {
-        "latitude": 56.326887,
-        "longitude": 36.550186
-      },
-      {
-        "latitude": 54.706490,
-        "longitude": 20.510951
-      },
-      {
-        "latitude": 51.533557,
-        "longitude": 31.289350
-      },
-      {
-        "latitude": 53.195538,
-        "longitude": 50.101783
-      },
-      {
-        "latitude": 52.286387,
-        "longitude": 104.280660
-      }
+    "housingTypes": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "userNames": [
+      "Emma Wilson",
+      "Alex Chen",
+      "Sophia Rodriguez",
+      "Marcus Johnson",
+      "Isabella Garcia",
+      "Daniel Kim",
+      "Olivia Martin",
+      "Lucas Schmidt"
+    ],
+    "userEmails": [
+      "emma.wilson@example.com",
+      "alex.chen@example.org",
+      "sophia.rodriguez@email.com",
+      "marcus.j@example.net",
+      "bella.garcia@example.com",
+      "daniel.kim@email.org",
+      "olivia.martin@example.com",
+      "lucas.schmidt@email.net"
+    ],
+    "userAvatars": [
+      "https://assets/avatar-emma.jpg",
+      "https://assets/avatar-alex.jpg",
+      "https://assets/avatar-sophia.jpg",
+      "https://assets/avatar-marcus.jpg",
+      "https://assets/avatar-isabella.jpg",
+      "https://assets/avatar-daniel.jpg",
+      "https://assets/avatar-olivia.jpg",
+      "https://assets/avatar-lucas.jpg"
+    ],
+    "userPasswords": [
+      "securePass123!",
+      "myPassword2024",
+      "wanderlustTravel!",
+      "homeSweetHome23",
+      "exploreWorld2024",
+      "safeLoginKey!",
+      "vacationRent2024",
+      "hostPremium#1"
+    ],
+    "userTypes": [
+      "Standart",
+      "Pro"
     ]
   }
 }
