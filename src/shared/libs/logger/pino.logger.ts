@@ -8,11 +8,11 @@ export class PinoLogger implements Logger {
     this.logger = pino();
   }
   public info(message: string, ...args: unknown[]): void {
-    this.logger.info(message, ...args);
+    this.logger.info({}, message, ...args);
   }
 
   public warn(message: string, ...args: unknown[]): void {
-    this.logger.warn(message, ...args);
+    this.logger.warn({}, message, ...args);
   }
 
   public error(message: string, error: Error, ...args: unknown[]): void {
@@ -20,6 +20,6 @@ export class PinoLogger implements Logger {
   }
 
   public debug(message: string, ...args: unknown[]): void {
-    this.logger.debug(message, ...args);
+    this.logger.debug({}, message, ...args);
   }
 }
