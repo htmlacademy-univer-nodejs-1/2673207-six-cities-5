@@ -1,0 +1,108 @@
+{
+  "api": {
+    "titles": [
+      "Modern City Loft",
+      "Cozy Garden Cottage",
+      "Luxury Penthouse View",
+      "Charming Historic Flat",
+      "Minimalist Studio Space",
+      "Seaside Villa Retreat",
+      "Mountain View Cabin",
+      "Downtown Artistic Suite"
+    ],
+    "descriptions": [
+      "A beautifully designed space with modern amenities and stunning city views. Perfect for both short stays and longer visits.",
+      "Nestled in a quiet neighborhood, this property offers tranquility while being close to all major attractions and transportation.",
+      "Recently renovated with high-end finishes, this home combines comfort with sophisticated style and practical living.",
+      "Experience the local culture from this centrally located property that puts the best of the city at your doorstep.",
+      "Bright and airy spaces with thoughtful details that make every stay memorable and comfortable for all guests.",
+      "Professional cleaning and sanitization between each booking ensures a safe and hygienic environment for your stay."
+    ],
+    "cities": [
+      "Paris",
+      "Amsterdam",
+      "Cologne",
+      "Brussels",
+      "Dusseldorf",
+      "Hamburg"
+    ],
+    "photoLinks": [
+      "https://assets/living-room-1.jpg",
+      "https://assets/kitchen-modern.jpg",
+      "https://assets/bedroom-cozy.jpg",
+      "https://assets/bathroom-luxury.jpg",
+      "https://assets/balcony-view.jpg",
+      "https://assets/exterior-building.jpg",
+      "https://assets/amenities-pool.jpg",
+      "https://assets/workspace-area.jpg"
+    ],
+    "previewImages": [
+      "https://assets/preview-main-1.jpg",
+      "https://assets/preview-main-2.jpg",
+      "https://assets/preview-main-3.jpg",
+      "https://assets/preview-main-4.jpg",
+      "https://assets/preview-main-5.jpg",
+      "https://assets/preview-main-6.jpg",
+      "https://assets/preview-main-7.jpg"
+    ],
+    "convenientTypes": [
+      "Washer",
+      "Towels",
+      "Fridge",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Breakfast"
+    ],
+    "housingTypes": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "userNames": [
+      "Emma Wilson",
+      "Alex Chen",
+      "Sophia Rodriguez",
+      "Marcus Johnson",
+      "Isabella Garcia",
+      "Daniel Kim",
+      "Olivia Martin",
+      "Lucas Schmidt"
+    ],
+    "userEmails": [
+      "emma.wilson@example.com",
+      "alex.chen@example.org",
+      "sophia.rodriguez@email.com",
+      "marcus.j@example.net",
+      "bella.garcia@example.com",
+      "daniel.kim@email.org",
+      "olivia.martin@example.com",
+      "lucas.schmidt@email.net"
+    ],
+    "userAvatars": [
+      "https://assets/avatar-emma.jpg",
+      "https://assets/avatar-alex.jpg",
+      "https://assets/avatar-sophia.jpg",
+      "https://assets/avatar-marcus.jpg",
+      "https://assets/avatar-isabella.jpg",
+      "https://assets/avatar-daniel.jpg",
+      "https://assets/avatar-olivia.jpg",
+      "https://assets/avatar-lucas.jpg"
+    ],
+    "userPasswords": [
+      "securePass123!",
+      "myPassword2024",
+      "wanderlustTravel!",
+      "homeSweetHome23",
+      "exploreWorld2024",
+      "safeLoginKey!",
+      "vacationRent2024",
+      "hostPremium#1"
+    ],
+    "userTypes": [
+      "Standart",
+      "Pro"
+    ]
+  }
+}
