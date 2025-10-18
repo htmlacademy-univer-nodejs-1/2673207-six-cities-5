@@ -5,12 +5,12 @@ export class CreateOfferDto {
   description: string;
   city: City;
   previewImage: string;
-  images: [string, string, string, string, string, string];
+  images: string[];
   isPremium?: boolean;
   isFavorite?: boolean;
   rating?: number;
   type: HouseType;
-  bedrooms: number;
+  roomCount: number;
   maxGuests: number;
   price: number;
   conveniences: Array<ConvenientType>;

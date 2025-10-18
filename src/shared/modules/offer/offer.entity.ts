@@ -23,7 +23,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public previewImage: string;
 
   @prop({required: true})
-  public images: [string, string, string, string, string, string];
+  public images: string[];
 
   @prop({default: false})
   public isPremium: boolean;
@@ -35,7 +35,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public rating: number;
 
   @prop({required: true})
-  public bedrooms: number;
+  public roomCount: number;
 
   @prop({required: true})
   public maxGuests: number;

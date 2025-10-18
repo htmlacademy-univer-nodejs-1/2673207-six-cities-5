@@ -1,4 +1,4 @@
-import { City, ConvenientType, HouseType, Offer } from '../types/index.js';
+import { City, ConvenientType, HouseType, Offer, UserType } from '../types/index.js';
 
 function parseConveniences(conveniencesString: string): ConvenientType[] {
   try {
@@ -41,7 +41,54 @@ export function createOffer(offerData: string): Offer {
     guestCount: parseInt(guestCount, 10),
     rentalPrice: parseInt(rentalPrice, 10),
     conveniences: parseConveniences(conveniences),
-    user: {name: userName, email: userEmail, avatar: userAvatar, password: userPassword, type: userType as 'обычный' | 'pro'},
+    user: {name: userName, email: userEmail, avatar: userAvatar, password: userPassword, type: userType as UserType},
     commentsCount: parseInt(commentsCount, 10),
     coordinates: coordinates.split(';').map((c) => parseInt(c, 10)) };
+}
+
+export function parseOffer(data: string): Offer {
+  const [
+    title,
+    description,
+    publicationDate,
+    city,
+    image,
+    images,
+    isPremium,
+    isFavorite,
+    rating,
+    type,
+    bedrooms,
+    maxGuests,
+    price,
+    conveniences,
+    name,
+    email,
+    avatar,
+    password,
+    userType,
+    latitude,
+    longitude] = data.replace('\n', '')
+    .split('\t');
+
+  return {
+    title,
+    description,
+    publishData: new Date(publicationDate),
+    city: City[city as keyof typeof City],
+    image,
+    photo: images.split(';'),
+    premium: isPremium === 'true',
+    favourite: isFavorite === 'true',
+    rating: parseFloat(rating),
+    houseType: HouseType[type as keyof typeof HouseType],
+    roomCount: parseInt(bedrooms, 10),
+    guestCount: parseInt(maxGuests, 10),
+    rentalPrice: parseInt(price, 10),
+    conveniences: conveniences.trim().split(';').map(
+      (x) => Object.values(ConvenientType).includes(x as ConvenientType) ? x : undefined).filter((x) => !!x) as ConvenientType[],
+    user: {name, avatar, type: UserType[userType as keyof typeof UserType], password: password, email},
+    commentsCount: 0,
+    coordinates: [parseFloat(latitude), parseFloat(longitude)],
+  };
 }
