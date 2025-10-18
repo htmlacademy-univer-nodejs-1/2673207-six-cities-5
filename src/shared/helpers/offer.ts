@@ -1,4 +1,4 @@
-import { City, ConvenientType, HouseType, Offer } from '../types/index.js';
+import { City, ConvenientType, HouseType, Offer, UserType } from '../types/index.js';
 
 function parseConveniences(conveniencesString: string): ConvenientType[] {
   try {
@@ -41,7 +41,7 @@ export function createOffer(offerData: string): Offer {
     guestCount: parseInt(guestCount, 10),
     rentalPrice: parseInt(rentalPrice, 10),
     conveniences: parseConveniences(conveniences),
-    user: {name: userName, email: userEmail, avatar: userAvatar, password: userPassword, type: userType as 'обычный' | 'pro'},
+    user: {name: userName, email: userEmail, avatar: userAvatar, password: userPassword, type: userType as UserType},
     commentsCount: parseInt(commentsCount, 10),
     coordinates: coordinates.split(';').map((c) => parseInt(c, 10)) };
 }
