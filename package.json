@@ -43,9 +43,9 @@
     "dayjs": "1.11.18",
     "dotenv": "17.2.3",
     "got": "14.4.9",
-    "inversify": "6.0.1",
+    "inversify": "7.10.2",
     "json-server": "1.0.0-beta.3",
-    "mongoose": "^8.19.1",
+    "mongoose": "8.19.1",
     "pino": "10.0.0",
     "pino-pretty": "13.0.0",
     "reflect-metadata": "0.1.13"
