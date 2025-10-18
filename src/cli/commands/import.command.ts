@@ -28,7 +28,7 @@ export class ImportCommander implements Commander {
 
   private async onImportedLine(line: string, resolve: () => void) {
     const offer = createOffer(line);
-    console.log(offer)
+    console.log(offer);
     await this.saveOffer(offer);
     resolve();
   }

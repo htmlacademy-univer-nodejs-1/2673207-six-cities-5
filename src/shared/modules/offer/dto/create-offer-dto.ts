@@ -15,5 +15,5 @@ export class CreateOfferDto {
   price: number;
   conveniences: Array<ConvenientType>;
   author: string;
-  coordinates: Array<number>
+  coordinates: Array<number>;
 }
