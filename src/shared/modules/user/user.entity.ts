@@ -1,31 +1,51 @@
-import { prop, modelOptions, getModelForClass, defaultClasses } from '@typegoose/typegoose';
-import { UserType } from '../../types/index.js';
+import { defaultClasses, getModelForClass, prop, modelOptions } from '@typegoose/typegoose';
+import { User, UserType } from '../../types/index.js';
+import { createSHA256 } from '../../helpers/index.js';
+import { CreateUserDto } from './dto/create-user.dto.js';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface UserEntity extends defaultClasses.Base {}
 
 @modelOptions({
   schemaOptions: {
-    collection: 'users',
-    timestamps: true
+    collection: 'users'
+  },
+  options: {
+    allowMixed: 0 // Отключаем предупреждения для Mixed
   }
 })
-// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export class UserEntity extends defaultClasses.TimeStamps {
-  @prop({ required: true })
-  public name!: string;
 
+export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({ unique: true, required: true })
-  public email!: string;
+  public email: string;
 
-  @prop()
-  public avatarUrl?: string;
+  @prop({ required: false, default: '' })
+  public avatar: string;
 
-  @prop({ required: true })
-  public password!: string;
+  @prop({ required: true, default: '' })
+  public name: string;
 
-  @prop({ required: true, type: () => String, enum: UserType })
-  public type!: UserType;
+  @prop({ required: true, default: '' })
+  public password: string;
+
+  @prop({ required: true, default: '' })
+  public type: UserType;
+
+  constructor(userData: CreateUserDto) {
+    super();
+
+    this.email = userData.email;
+    this.avatar = userData.avatar;
+    this.name = userData.name;
+    this.type = userData.type;
+  }
+
+  public setPassword(password: string, salt: string) {
+    this.password = createSHA256(password, salt);
+  }
+
+  public getPassword() {
+    return this.password;
+  }
 }
 
 export const UserModel = getModelForClass(UserEntity);

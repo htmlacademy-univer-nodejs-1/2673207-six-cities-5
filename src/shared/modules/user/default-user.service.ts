@@ -18,7 +18,7 @@ export class DefaultUserService implements UserService {
     const user = {
       name: dto.name,
       email: dto.email,
-      avatarUrl: dto.avatarUrl,
+      avatarUrl: dto.avatar,
       password: createSHA256(dto.password, salt),
       type: dto.type
     };

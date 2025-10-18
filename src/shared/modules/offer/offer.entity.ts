@@ -8,6 +8,9 @@ export interface OfferEntity extends defaultClasses.Base {
 @modelOptions({
   schemaOptions: {
     collection: 'offers'
+  },
+  options: {
+    allowMixed: 0 // Отключаем предупреждения для Mixed
   }
 })
 

@@ -1,6 +1,6 @@
 import { Commander} from './command.interface.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
-import { parseOffer, getErrorMessage, getMongoURI } from '../../shared/helpers/index.js';
+import { getErrorMessage, getMongoURI, createOffer } from '../../shared/helpers/index.js';
 import { UserService } from '../../shared/modules/user/user-service.interface.js';
 import { DefaultOfferService, OfferModel, IOfferService } from '../../shared/modules/offer/index.js';
 import { DatabaseClient, MongoDatabaseClient } from '../../shared/libs/database-client/index.js';
@@ -27,7 +27,8 @@ export class ImportCommander implements Commander {
   }
 
   private async onImportedLine(line: string, resolve: () => void) {
-    const offer = parseOffer(line);
+    const offer = createOffer(line);
+    console.log(offer)
     await this.saveOffer(offer);
     resolve();
   }
