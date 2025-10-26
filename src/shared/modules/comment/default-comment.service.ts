@@ -5,7 +5,7 @@ import CreateCommentDto from './dto/create-comment.dto.js';
 import { Component } from '../../types/component.enum.js';
 import { CommentService } from './comment-service.interface.js';
 
-const DEFAULT_COMMENTS_COUNT  = 50;
+const DEFAULT_COMMENTS_COUNT = 50;
 const DEFAULT_SORT_TYPE = -1;
 
 @injectable()

@@ -8,10 +8,10 @@ import { CommentService } from './comment-service.interface.js';
 export const commentContainer: ContainerModule = new ContainerModule(
   (options: ContainerModuleLoadOptions) => {
     options.bind<CommentService>(Component.CommentService)
-    .to(DefaultCommentService)
-    .inSingletonScope();
+      .to(DefaultCommentService)
+      .inSingletonScope();
 
     options.bind<types.ModelType<CommentEntity>>(Component.CommentModel)
-    .toConstantValue(CommentModel);
+      .toConstantValue(CommentModel);
 
   });

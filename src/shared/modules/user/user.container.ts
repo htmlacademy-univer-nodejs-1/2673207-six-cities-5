@@ -10,4 +10,4 @@ export const userContainer: ContainerModule = new ContainerModule(
     options.bind<UserService>(Component.UserService).to(DefaultUserService).inSingletonScope();
     options.bind<types.ModelType<UserEntity>>(Component.UserModel).toConstantValue(UserModel);
   }
-)
+);

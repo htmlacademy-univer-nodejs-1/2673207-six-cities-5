@@ -10,7 +10,7 @@ import { FavoriteEntity } from '../favorite/favorite.entity.js';
 
 const DEFAULT_OFFER_COUNT = 60;
 const DEFAULT_PREMIUM_OFFER_COUNT = 3;
-const DEFAULT_SORT_TYPE = -1
+const DEFAULT_SORT_TYPE = -1;
 
 @injectable()
 export class DefaultOfferService implements IOfferService {
@@ -23,6 +23,7 @@ export class DefaultOfferService implements IOfferService {
     @inject(Component.CommentModel)
     private readonly commentModel: types.ModelType<CommentEntity>
   ) {}
+
   public async addComment(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(offerId, {
