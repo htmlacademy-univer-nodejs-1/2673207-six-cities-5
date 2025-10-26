@@ -10,7 +10,7 @@
   "main": "main.js",
   "scripts": {
     "start": "npm run build && node ./dist/main.rest.js",
-    "start:dev": "npm run build && node ./dist/main.rest.js | pino-pretty --colorize --translateTime SYS:standard",
+    "start:dev": "npm run build && npm run ts ./dist/main.rest.js | pino-pretty --colorize --translateTime SYS:standard",
     "start-cli": "npm run build && node ./dist/main.cli.js",
     "start-cli:dev": "npm run build && node ./dist/main.cli.js | pino-pretty --colorize --translateTime SYS:standard",
     "build": "npm run clean && npm run compile",
