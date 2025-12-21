@@ -31,15 +31,13 @@ export class OfferController extends BaseController
   }
 
   public async create(req: Request, res: Response): Promise<void> {
-    console.info(req.body);
     const offerDTO = this.convertToCreateUpdateOfferDto(req);
-    const offer = await this.offerService.create(offerDTO);
-    this.created(res, offer);
+    const createdOffer = await this.offerService.create(offerDTO);
+    this.created(res, createdOffer);
   }
 
   public async getList(_req: Request, res: Response): Promise<void> {
     const offers = await this.offerService.find();
-    console.info(offers);
     this.ok(res, fillDTO(OfferRdo, offers));
   }
 

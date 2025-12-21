@@ -6,6 +6,7 @@ import { DatabaseClient } from '../shared/libs/database-client/index.js';
 import { getMongoURI } from '../shared/helpers/index.js';
 import express, { Express } from 'express';
 import { OfferController } from '../shared/modules/offer/index.js';
+import { UserContoller } from '../shared/modules/user/user.controller.js';
 
 @injectable()
 export class RestApplication {
@@ -16,6 +17,7 @@ export class RestApplication {
     @inject(Component.Config) private readonly config: Config<RestSchema>,
     @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient,
     @inject(Component.OfferController) private readonly offerController: OfferController,
+    @inject(Component.UserController) private readonly userController: UserContoller
   ) {
     this.server = express();
   }
@@ -42,6 +44,7 @@ export class RestApplication {
 
   private async _initControllers() {
     this.server.use('/offers', this.offerController.router);
+    this.server.use('/users', this.userController.router);
   }
   private async _initDb() {
     const mongoUri = getMongoURI(
