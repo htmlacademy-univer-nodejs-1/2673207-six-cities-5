@@ -28,6 +28,10 @@ export class RestApplication {
     this.logger.info('try to init server...');
     await this._initServer();
     this.logger.info('Init server completed');
+
+    this.logger.info('try to init middleware...');
+    await this._initMiddleware();
+    this.logger.info('Init middleware completed');
   }
 
   private async _initDb() {
@@ -40,6 +44,10 @@ export class RestApplication {
     );
 
     return this.databaseClient.connect(mongoUri);
+  }
+
+  private async _initMiddleware() {
+    this.server.use(express.json());
   }
 
   private async _initServer() {
