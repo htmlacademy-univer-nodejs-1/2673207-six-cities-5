@@ -2,7 +2,7 @@ import { City } from "../../../../types/city-type.enum.js";
 import { ConvenientType } from "../../../../types/convenient-type.enum.js";
 import { HouseType } from "../../../../types/housing-type.enum.js";
 
-export class CreateOfferDto {
+export class CreateUpdateOfferDto {
   public title: string;
   public description: string;
   public publishData: Date;
