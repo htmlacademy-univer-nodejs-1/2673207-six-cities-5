@@ -11,6 +11,7 @@
   "scripts": {
     "start": "npm run build && node ./dist/main.rest.js",
     "start:dev": "npm run build && node ./dist/main.rest.js | pino-pretty --colorize --translateTime SYS:standard",
+    "start-cli": "npm run build && node ./dist/main.cli.js",
     "build": "npm run clean && npm run compile",
     "lint": "eslint src/ --ext .ts",
     "compile": "tsc -p tsconfig.json",

@@ -12,6 +12,14 @@ export function getRandomItems<T>(items: T[]):T[] {
   return items.slice(startPosition, endPosition);
 }
 
+export function getRandomCountItems<T>(items: T[], count: number): T[] {
+  const result = [];
+  for (let i = 0; i < count; i++) {
+    result.push(getRandomItem(items));
+  }
+  return result;
+}
+
 export function getRandomItem<T>(items: T[]): T {
   return items[generateRandomValue(0, items.length - 1)];
 }
