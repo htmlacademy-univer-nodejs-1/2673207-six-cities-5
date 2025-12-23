@@ -116,4 +116,4 @@ export class OfferEntity extends defaultClasses.TimeStamps{
   public coordinates: number[];
 }
 
-export const OferModel = getModelForClass(OfferEntity);
+export const OfferModel = getModelForClass(OfferEntity);
