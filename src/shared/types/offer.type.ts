@@ -8,8 +8,8 @@ export type Offer = {
   description: string,
   publishData: Date,
   city: City,
-  image: string,
-  photo: Array<string>,
+  imageLink: string,
+  photoLinks: Array<string>,
   premium: boolean,
   favourite: boolean,
   rating: number,
@@ -18,7 +18,7 @@ export type Offer = {
   guestCount: number,
   rentalPrice: number,
   conveniences: Array<ConvenientType>,
-  user: User,
+  author: User,
   commentsCount: number,
   coordinates: Array<number>
 }
