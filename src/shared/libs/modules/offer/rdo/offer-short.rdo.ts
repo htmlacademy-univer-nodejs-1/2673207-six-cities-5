@@ -1,6 +1,6 @@
-import { Expose } from "class-transformer";
-import { City } from "../../../../types/city-type.enum.js";
-import { HouseType } from "../../../../types/housing-type.enum.js";
+import { Expose } from 'class-transformer';
+import { City } from '../../../../types/city-type.enum.js';
+import { HouseType } from '../../../../types/housing-type.enum.js';
 
 export class OfferShortRdo {
   @Expose()

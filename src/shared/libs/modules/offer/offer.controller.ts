@@ -1,14 +1,14 @@
-import { inject, injectable } from "inversify";
-import { BaseController, HttpError, HttpMethod } from "../../rest/index.js";
-import { Component } from "../../../types/component.enum.js";
-import { Logger } from "../../logger/index.js";
-import { Request, Response } from "express";
-import { CreateOfferRequest } from "./create-update-offer-request.type.js";
-import { OfferService } from "./offer-service.interface.js";
-import { fillDTO } from "../../../helpers/common.js";
-import { OfferFullRdo } from "./rdo/offer-full.rdo.js";
-import { UserService } from "../user/user-service.interface.js";
-import { StatusCodes } from "http-status-codes";
+import { inject, injectable } from 'inversify';
+import { BaseController, HttpError, HttpMethod } from '../../rest/index.js';
+import { Component } from '../../../types/component.enum.js';
+import { Logger } from '../../logger/index.js';
+import { Request, Response } from 'express';
+import { CreateOfferRequest } from './create-update-offer-request.type.js';
+import { OfferService } from './offer-service.interface.js';
+import { fillDTO } from '../../../helpers/common.js';
+import { OfferFullRdo } from './rdo/offer-full.rdo.js';
+import { UserService } from '../user/user-service.interface.js';
+import { StatusCodes } from 'http-status-codes';
 
 @injectable()
 export class OfferController extends BaseController {
