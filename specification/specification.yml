@@ -12,8 +12,6 @@ tags:
     description: Комментарии к предложениям
   - name: Favorites
     description: Избранные предложения
-  - name: Auth
-    description: Аутентификация и авторизация
 
 servers:
   - url: http://172.19.160.1:4000
@@ -53,9 +51,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/login:
+  /users/login:
     post:
-      tags: [Auth]
+      tags: [Users]
       summary: Вход в закрытую часть приложения
       description: Аутентификация пользователя
       operationId: login
@@ -92,9 +90,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/logout:
+  /users/logout:
     post:
-      tags: [Auth]
+      tags: [Users]
       summary: Выход из закрытой части приложения
       description: |
         Завершение пользовательского сеанса.
@@ -112,9 +110,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/check:
+  /users/check:
     get:
-      tags: [Auth]
+      tags: [Users]
       summary: Проверка состояния пользователя
       description: Проверка авторизации на основе токена
       operationId: checkAuth

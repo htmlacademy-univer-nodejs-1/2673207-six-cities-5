@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { BaseController, HttpError, HttpMethod } from '../../../libs/rest/index.js';
 import { Logger } from '../../../libs/logger/index.js';
 import { Component } from '../../../types/index.js';
@@ -21,10 +21,25 @@ export class UserController extends BaseController {
 
     this.logger.info('Register routes for UserController…');
 
-    this.addRoute({ path: '/register', method: HttpMethod.Post, handler: this.create });
+    this.addRoute({ path: '/register', method: HttpMethod.Post, handler: this.register });
+    this.addRoute({ path: '/login', method: HttpMethod.Post, handler: this.login });
+    this.addRoute({ path: '/logout', method: HttpMethod.Post, handler: this.logout });
+    this.addRoute({ path: '/check', method: HttpMethod.Get, handler: this.check });
   }
 
-  public async create({ body }: CreateUserRequest, res: Response): Promise<void> {
+  public async login(_req: Request, _res: Response): Promise<void> {
+    throw new Error('[UserController] Oops');
+  }
+
+  public async logout(_req: Request, _res: Response): Promise<void> {
+    throw new Error('[UserController] Oops');
+  }
+
+  public async check(_req: Request, _res: Response): Promise<void> {
+    throw new Error('[UserController] Oops');
+  }
+
+  public async register({ body }: CreateUserRequest, res: Response): Promise<void> {
     const existsUser = await this.userService.findByEmail(body.email);
 
     if (existsUser) {
