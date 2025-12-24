@@ -43,7 +43,7 @@ export class UserEntity extends defaultClasses.TimeStamps{
   }
 
   @prop({ required: false, default: 'обычный' })
-  public type: 'обычный' | 'pro'
+  public type: 'обычный' | 'pro';
 }
 
 

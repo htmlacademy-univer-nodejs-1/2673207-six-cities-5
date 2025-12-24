@@ -1,4 +1,4 @@
-import { defaultClasses, getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
+import { defaultClasses, getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface FavoriteEntity extends defaultClasses.Base {}

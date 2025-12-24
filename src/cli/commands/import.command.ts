@@ -61,7 +61,7 @@ export class ImportCommander implements Commander {
       authorId: user.id,
       commentsCount: offer.commentsCount,
       coordinates: offer.coordinates,
-    })
+    });
   }
 
   private onCompleteImport(count: number) {
@@ -70,7 +70,7 @@ export class ImportCommander implements Commander {
   }
 
   public async execute(filename: string, login: string, password: string,
-     host: string, dbname: string, salt: string): Promise<void> {
+    host: string, dbname: string, salt: string): Promise<void> {
 
     const uri = getMongoURI(login, password, host, DEFAULT_DB_PORT, dbname);
     this.logger.info(uri);

@@ -1,9 +1,9 @@
-import { inject, injectable } from "inversify";
-import { CommentService } from "./comment-service.interface.js";
-import { Component } from "../../../types/component.enum.js";
-import { DocumentType, types } from "@typegoose/typegoose";
-import { CommentEntity } from "./comment.entity.js";
-import { CreateCommentDto } from "./dto/create-comment.dto.js";
+import { inject, injectable } from 'inversify';
+import { CommentService } from './comment-service.interface.js';
+import { Component } from '../../../types/component.enum.js';
+import { DocumentType, types } from '@typegoose/typegoose';
+import { CommentEntity } from './comment.entity.js';
+import { CreateCommentDto } from './dto/create-comment.dto.js';
 
 @injectable()
 export class DefaultCommentService implements CommentService {
@@ -20,7 +20,7 @@ export class DefaultCommentService implements CommentService {
     const limit = count ?? 60;
     return this.commentModel
       .find({ offerId })
-      .limit( limit )
+      .limit(limit)
       .sort({ createdAt: 'desc' })
       .populate('userId');
   }

@@ -34,12 +34,13 @@ export class DefaultOfferService implements OfferService {
       ).exec();
 
   }
+
   public async incComment(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(
         offerId, {'$inc': {
-        commentsCount: 1,
-      }})
+          commentsCount: 1,
+        }})
       .exec();
   }
 
@@ -67,7 +68,7 @@ export class DefaultOfferService implements OfferService {
     return offers;
   }
 
-  public async findPremiumOffers( city: City): Promise<DocumentType<OfferEntity>[]> {
+  public async findPremiumOffers(city: City): Promise<DocumentType<OfferEntity>[]> {
     return await this.offerModel
       .find({city: city, premium: true})
       .sort({createdAt: 'desc'})
@@ -108,7 +109,7 @@ export class DefaultOfferService implements OfferService {
     }
 
     offer.favourite = true;
-    return offer
+    return offer;
   }
 
   public async deleteFavouriteOffer(offerId: string): Promise<DocumentType<OfferEntity> | null> {
