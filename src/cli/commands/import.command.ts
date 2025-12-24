@@ -7,7 +7,7 @@ import { FavoriteModel } from '../../shared/libs/modules/favorite/favorite.entit
 import { OfferService, DefaultOfferService, OfferModel } from '../../shared/libs/modules/offer/index.js';
 import { UserService, DefaultUserService, UserModel } from '../../shared/libs/modules/user/index.js';
 import { Offer } from '../../shared/types/index.js';
-import { DEFAULT_DB_PORT } from './command.constant.js';
+import { DEFAULT_DB_PORT, DEFAULT_USER_PASSWORD } from './command.constant.js';
 import { Commander } from './command.interface.js';
 
 export class ImportCommander implements Commander {
@@ -40,6 +40,7 @@ export class ImportCommander implements Commander {
   private async saveOffer(offer: Offer) {
     const user = await this.userService.findOrCreate({
       ...offer.author,
+      password: DEFAULT_USER_PASSWORD
     }, this.salt);
 
     await this.offerService.create({
