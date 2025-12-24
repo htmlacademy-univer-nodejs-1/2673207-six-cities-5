@@ -1,4 +1,4 @@
-import { City, ConvenientType, HouseType, Offer } from '../types/index.js';
+import { City, ConvenientType, HouseType, Offer, UserType } from '../types/index.js';
 
 function parseConveniences(conveniencesString: string): ConvenientType[] {
   try {
