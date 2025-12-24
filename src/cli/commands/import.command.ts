@@ -78,17 +78,15 @@ export class ImportCommander implements Commander {
     await this.databaseClient.connect(uri);
 
     const fileReader = new TSVFileReader(filename.trim());
+
     fileReader.on('line', this.onImportedLine);
     fileReader.on('end', this.onCompleteImport);
 
     try {
-      fileReader.read();
-    } catch (err) {
-      if (!(err instanceof Error)) {
-        throw err;
-      }
+      await fileReader.read();
+    } catch (error) {
       console.error(`Can't import data from file: ${filename}`);
-      console.error(getErrorMessage(err));
+      console.error(getErrorMessage(error));
     }
   }
 }
