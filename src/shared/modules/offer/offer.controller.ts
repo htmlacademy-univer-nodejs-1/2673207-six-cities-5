@@ -14,20 +14,19 @@ import { OfferRdo } from './rdo/get-offer-list-rdo.js';
 
 
 @injectable()
-export class OfferController extends BaseController
-{
+export class OfferController extends BaseController {
   constructor(
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.OfferService) protected readonly offerService: DefaultOfferService,
   ) {
     super(logger);
     this.logger.info('Register routes for OfferController...');
-    this.addRoute({ path: '/', method: HttpMethod.Post, handler: this.create })
-    this.addRoute({ path: '/', method: HttpMethod.Get, handler: this.getList })
-    this.addRoute({ path: '/:offerId', method: HttpMethod.Get, handler: this.getOffer })
-    this.addRoute({ path: '/:offerId', method: HttpMethod.Put, handler: this.updateOffer })
-    this.addRoute({ path: '/:offerId', method: HttpMethod.Delete, handler: this.deleteOffer })
-    this.addRoute({ path: '/premium', method: HttpMethod.Get, handler: this.getPremiumOffers })
+    this.addRoute({ path: '/', method: HttpMethod.Post, handler: this.create });
+    this.addRoute({ path: '/', method: HttpMethod.Get, handler: this.getList });
+    this.addRoute({ path: '/:offerId', method: HttpMethod.Get, handler: this.getOffer });
+    this.addRoute({ path: '/:offerId', method: HttpMethod.Put, handler: this.updateOffer });
+    this.addRoute({ path: '/:offerId', method: HttpMethod.Delete, handler: this.deleteOffer });
+    this.addRoute({ path: '/premium', method: HttpMethod.Get, handler: this.getPremiumOffers });
   }
 
   public async create(req: Request, res: Response): Promise<void> {
@@ -52,7 +51,7 @@ export class OfferController extends BaseController
 
   public async updateOffer(req: Request, res: Response): Promise<void> {
     const { offerId } = req.params;
-    const offerDTO = this.convertToCreateUpdateOfferDto( req );
+    const offerDTO = this.convertToCreateUpdateOfferDto(req);
     const updateOffer = await this.offerService.updateById(offerId, offerDTO);
     if (updateOffer === null) {
       this.noContent(res, null);
@@ -63,14 +62,14 @@ export class OfferController extends BaseController
   public async deleteOffer(req: Request, res: Response): Promise<void> {
     const { offerId } = req.params;
     const deletedOffer = await this.offerService.deleteById(offerId);
-    if ( deletedOffer === null) {
+    if (deletedOffer === null) {
       this.noContent(res, null);
     }
     this.ok(res, deletedOffer);
   }
 
   public async getPremiumOffers(req: Request, res: Response): Promise<void> {
-    const { city } = req.body.city
+    const { city } = req.body.city;
     const premiumOffers = await this.offerService.findPremiumOffersByCity(city);
     this.ok(res, premiumOffers);
   }
@@ -84,9 +83,9 @@ export class OfferController extends BaseController
       images: Array.isArray(req.body.images)
         ? req.body.images
         : [
-            'https://via.placeholder.com/600x400/1',
-            'https://via.placeholder.com/600x400/2',
-            'https://via.placeholder.com/600x400/3',
+          'https://via.placeholder.com/600x400/1',
+          'https://via.placeholder.com/600x400/2',
+          'https://via.placeholder.com/600x400/3',
         ],
       isPremium: Boolean(req.body.isPremium),
       isFavorite: Boolean(req.body.isFavorite),
@@ -100,7 +99,7 @@ export class OfferController extends BaseController
       coordinates: Array.isArray(req.body.coordinates) && req.body.coordinates.length === 2
         ? [Number(req.body.coordinates[0]), Number(req.body.coordinates[1])]
         : [52.3676, 4.9041],
-    }
+    };
     return offerDTO;
   }
 }
