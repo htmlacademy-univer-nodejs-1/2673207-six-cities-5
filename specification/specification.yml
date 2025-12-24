@@ -15,10 +15,13 @@ tags:
   - name: Auth
     description: Аутентификация и авторизация
 
+servers:
+  - url: http://172.19.160.1:4000
+
 paths:
-  /auth/register:
+  /users/register:
     post:
-      tags: [Auth, Users]
+      tags: [Users]
       summary: Создание нового пользователя
       description: |
         Ресурс для создания нового пользователя.
@@ -168,6 +171,14 @@ paths:
       operationId: createOffer
       security:
         - bearerAuth: []
+      parameters:
+      - in: query
+        name: email
+        schema:
+          type: string
+          format: email
+        description: Email пользователя, создающего предложение
+        required: true
       requestBody:
         required: true
         content:
@@ -377,7 +388,7 @@ paths:
         '404':
           description: Предложение не найдено
 
-  /favorites:
+  /offers/favorites:
     get:
       tags: [Favorites]
       summary: Список избранных предложений
@@ -397,7 +408,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/OfferShortResponse'
 
-  /favorites/{offerId}:
+  /offers/favorites/{offerId}:
     post:
       tags: [Favorites]
       summary: Добавление предложения в избранное
