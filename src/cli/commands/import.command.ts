@@ -2,6 +2,8 @@ import { createOffer, getErrorMessage, getMongoURI } from '../../shared/helpers/
 import { DatabaseClient, MongoDatabaseClient } from '../../shared/libs/database-client/index.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
 import { ConsoleLogger, Logger } from '../../shared/libs/logger/index.js';
+import { CommentModel } from '../../shared/libs/modules/comment/comment.entity.js';
+import { FavoriteModel } from '../../shared/libs/modules/favorite/favorite.entity.js';
 import { OfferService, DefaultOfferService, OfferModel } from '../../shared/libs/modules/offer/index.js';
 import { UserService, DefaultUserService, UserModel } from '../../shared/libs/modules/user/index.js';
 import { Offer } from '../../shared/types/index.js';
@@ -20,7 +22,7 @@ export class ImportCommander implements Commander {
     this.onCompleteImport = this.onCompleteImport.bind(this);
 
     this.logger = new ConsoleLogger();
-    this.offerService = new DefaultOfferService(this.logger, OfferModel);
+    this.offerService = new DefaultOfferService(this.logger, OfferModel, FavoriteModel, CommentModel);
     this.userService = new DefaultUserService(this.logger, UserModel);
     this.databaseClient = new MongoDatabaseClient(this.logger);
   }
