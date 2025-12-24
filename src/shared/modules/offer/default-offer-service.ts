@@ -46,23 +46,22 @@ export class DefaultOfferService implements IOfferService {
   ): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findById(offerId)
-      .populate(['userId', 'categories'])
+      .populate(['author'])
       .exec();
   }
 
   public async find(
-    count?: number,
-    userId?: string
+    count?: number
   ): Promise<DocumentType<OfferEntity>[]> {
     const limit = count ?? DEFAULT_OFFER_COUNT;
     const offers = await this.offerModel
       .find()
       .limit(limit)
       .sort({ createdAt: DEFAULT_SORT_TYPE })
-      .populate(['authorId'])
+      .populate(['author'])
       .exec();
 
-    return this.addFavoriteToOffer(offers, userId);
+    return offers;
   }
 
   public async deleteById(
@@ -77,7 +76,7 @@ export class DefaultOfferService implements IOfferService {
   ): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(offerId, dto, { new: true })
-      .populate(['host'])
+      .populate(['author'])
       .exec();
   }
 
@@ -86,8 +85,7 @@ export class DefaultOfferService implements IOfferService {
   }
 
   public async findPremiumOffersByCity(
-    city: City,
-    userId?: string
+    city: City
   ): Promise<types.DocumentType<OfferEntity>[]> {
     const offers = await this.offerModel
       .find({ city, isPremium: true })
@@ -95,7 +93,7 @@ export class DefaultOfferService implements IOfferService {
       .sort({ createdAt: DEFAULT_SORT_TYPE })
       .exec();
 
-    return this.addFavoriteToOffer(offers, userId);
+    return offers;
   }
 
   public async getUserFavorites(
@@ -148,24 +146,23 @@ export class DefaultOfferService implements IOfferService {
       .exec();
   }
 
-  private async addFavoriteToOffer<
-    T extends { id: string; isFavorite: boolean }
-  >(offers: T[], userId: string | undefined): Promise<T[]> {
-    if (!userId) {
-      return offers.map((offer) => ({
-        ...offer,
-        isFavorite: false,
-      }));
-    }
-    const favorites = await this.favoriteModel
-      .find({ userId })
-      .lean<{ offerId: string }[]>()
-      .exec();
-    const offerIds = new Set(favorites.map((f) => f.offerId.toString()));
+  //private async addFavoriteToOffer<
+  //  T extends { id: string; isFavorite: boolean }
+  //>(offers: T[], userId: string | undefined): Promise<T[]> {
+  //  if (!userId) {
+  //    return offers.map((offer) => ({
+  //      ...offer,
+  //    }));
+  //  }
+  //  const favorites = await this.favoriteModel
+  //   .find({ userId })
+  //    .lean<{ offerId: string }[]>()
+  //    .exec();
+  //  const offerIds = new Set(favorites.map((f) => f.offerId.toString()));
 
-    return offers.map((offer) => ({
-      ...offer,
-      isFavorite: offerIds.has(offer.id.toString()),
-    }));
-  }
+  //  return offers.map((offer) => ({
+  //    ...offer,
+  //    isFavorite: offerIds.has(offer.id.toString()),
+  //  }));
+  //}
 }

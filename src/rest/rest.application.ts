@@ -5,6 +5,7 @@ import { Component } from '../shared/types/index.js';
 import { DatabaseClient } from '../shared/libs/database-client/index.js';
 import { getMongoURI } from '../shared/helpers/index.js';
 import express, { Express } from 'express';
+import { OfferController } from '../shared/modules/offer/index.js';
 
 @injectable()
 export class RestApplication {
@@ -14,6 +15,7 @@ export class RestApplication {
     @inject(Component.Logger) private readonly logger: Logger,
     @inject(Component.Config) private readonly config: Config<RestSchema>,
     @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient,
+    @inject(Component.OfferController) private readonly offerController: OfferController,
   ) {
     this.server = express();
   }
@@ -32,8 +34,15 @@ export class RestApplication {
     this.logger.info('try to init middleware...');
     await this._initMiddleware();
     this.logger.info('Init middleware completed');
+
+    this.logger.info('try to init controllers...');
+    await this._initControllers();
+    this.logger.info('Init controllers completed');
   }
 
+  private async _initControllers() {
+    this.server.use('/offers', this.offerController.router);
+  }
   private async _initDb() {
     const mongoUri = getMongoURI(
       this.config.get('DB_USER'),
