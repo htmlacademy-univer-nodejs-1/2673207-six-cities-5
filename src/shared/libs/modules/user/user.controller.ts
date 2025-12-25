@@ -9,6 +9,8 @@ import { Config, RestSchema } from '../../config/index.js';
 import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../../helpers/index.js';
 import { UserRdo } from './rdo/user.rdo.js';
+import { AuthService } from '../auth/index.js';
+import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -16,6 +18,7 @@ export class UserController extends BaseController {
     @inject(Component.UserService) protected readonly userService: UserService,
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.Config) private readonly configService: Config<RestSchema>,
+    @inject(Component.AuthService) private readonly authService: AuthService,
   ) {
     super(logger);
 
@@ -42,8 +45,14 @@ export class UserController extends BaseController {
     });
   }
 
-  public async login(_req: Request, _res: Response): Promise<void> {
-    throw new Error('[UserController] Oops');
+  public async login({ body }: LoginUserRequest, res: Response): Promise<void> {
+    const user = await this.authService.verify(body);
+    const token = await this.authService.authenticate(user);
+    const responseData = fillDTO(LoggedUserRdo, {
+      email: user.email,
+      token,
+    });
+    this.ok(res, responseData);
   }
 
   public async logout(_req: Request, _res: Response): Promise<void> {
