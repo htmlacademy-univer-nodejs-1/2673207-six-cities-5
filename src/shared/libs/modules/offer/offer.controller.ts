@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { BaseController, HttpError, HttpMethod, ValidateObjectIdMiddleware } from '../../rest/index.js';
+import { BaseController, DocumentExistsMiddleware, HttpError, HttpMethod, ValidateObjectIdMiddleware } from '../../rest/index.js';
 import { Component } from '../../../types/component.enum.js';
 import { Logger } from '../../logger/index.js';
 import { Request, Response } from 'express';
@@ -46,13 +46,19 @@ export class OfferController extends BaseController {
       path: '/:offerId/comments',
       method: HttpMethod.Get,
       handler: this.getComments,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')]
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ]
     });
     this.addRoute({
       path: '/:offerId/comments',
       method: HttpMethod.Post,
       handler: this.createComment,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')]
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ]
     });
     this.addRoute({ path: '/favorites', method: HttpMethod.Get, handler: this.getFavorites });
     this.addRoute({
