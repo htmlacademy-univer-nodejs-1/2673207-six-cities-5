@@ -9,6 +9,7 @@ import { fillDTO } from '../../../helpers/common.js';
 import { OfferFullRdo } from './rdo/offer-full.rdo.js';
 import { UserService } from '../user/user-service.interface.js';
 import { StatusCodes } from 'http-status-codes';
+import { City } from '../../../types/city-type.enum.js';
 
 @injectable()
 export class OfferController extends BaseController {
@@ -67,20 +68,26 @@ export class OfferController extends BaseController {
     this.created(res, fillDTO(OfferFullRdo, result));
   }
 
-  public async getById(_req: Request, _res: Response): Promise<void> {
-    throw new Error('[OfferController:getById] Oops');
+  public async getById(req: Request, res: Response): Promise<void> {
+    const offerId = req.params.offerId;
+    const offer = await this.offerService.findById(offerId);
+    this.ok(res, offer);
   }
 
   public async updateById(_req: Request, _res: Response): Promise<void> {
     throw new Error('[OfferController:updateById] Oops');
   }
 
-  public async deleteById(_req: Request, _res: Response): Promise<void> {
-    throw new Error('[OfferController:deleteById] Oops');
+  public async deleteById(req: Request, res: Response): Promise<void> {
+    const offerId = req.params.offerId;
+    await this.offerService.deleteById(offerId);
+    this.noContent(res, {});
   }
 
-  public async getPremiumByCity(_req: Request, _res: Response): Promise<void> {
-    throw new Error('[OfferController:getPremiumByCity] Oops');
+  public async getPremiumByCity(req: Request, res: Response): Promise<void> {
+    const city = req.params.city as City;
+    const offers = await this.offerService.findFavoriteOffers(city);
+    this.ok(res, offers);
   }
 
   public async getComments(_req: Request, _res: Response): Promise<void> {
