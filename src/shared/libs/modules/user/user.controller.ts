@@ -11,6 +11,7 @@ import { fillDTO } from '../../../helpers/index.js';
 import { UserRdo } from './rdo/user.rdo.js';
 import { AuthService } from '../auth/index.js';
 import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
+import { LoginUserRequest } from './login-user-request.type.js';
 
 @injectable()
 export class UserController extends BaseController {
