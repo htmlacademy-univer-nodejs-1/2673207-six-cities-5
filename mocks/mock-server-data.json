@@ -42,8 +42,7 @@
       "https://assets/preview-main-3.jpg",
       "https://assets/preview-main-4.jpg",
       "https://assets/preview-main-5.jpg",
-      "https://assets/preview-main-6.jpg",
-      "https://assets/preview-main-7.jpg"
+      "https://assets/preview-main-6.jpg"
     ],
     "convenientTypes": [
       "Washer",
@@ -101,7 +100,7 @@
       "hostPremium#1"
     ],
     "userTypes": [
-      "Standart",
+      "Обычный",
       "Pro"
     ]
   }

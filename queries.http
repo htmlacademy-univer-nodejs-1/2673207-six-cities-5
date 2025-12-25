@@ -1,0 +1,25 @@
+POST http://localhost:4000/offers
+Content-Type: application/json
+
+{
+  "title": "Beautiful apartment in Paris",
+  "description": "Spacious apartment with great view",
+  "city": "Paris",
+  "previewImage": "https://example.com/image1.jpg",
+  "images": [
+    "https://example.com/img1.jpg",
+    "https://example.com/img2.jpg",
+    "https://example.com/img3.jpg",
+    "https://example.com/img4.jpg",
+    "https://example.com/img5.jpg",
+    "https://example.com/img6.jpg"
+  ],
+  "type": "apartment",
+  "roomCount": 3,
+  "maxGuests": 4,
+  "price": 150,
+  "conveniences": ["WiFi", "AirConditioning"],
+  "author": "507f1f77bcf86cd799439011",
+  "coordinates": [48.8566, 2.3522]
+}
+###

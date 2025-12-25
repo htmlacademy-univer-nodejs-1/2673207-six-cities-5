@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { getRandomItem, generateRandomValue, getRandomItems } from '../../helpers/index.js';
+import { getRandomItem, generateRandomValue, getRandomItems, getRandomCountItems } from '../../helpers/index.js';
 import { MockServerData } from '../../types/index.js';
 import { OfferGenerator } from './offer-generator.interface.js';
 
@@ -16,7 +16,7 @@ const MIN_GUEST_COUNT = 1;
 const MAX_GUEST_COUNT = 10;
 
 const MIN_RENTAL_PRICE = 100;
-const MAX_RENTAL_PRICE = 999999;
+const MAX_RENTAL_PRICE = 100000;
 
 const MIN_COMMENT_COUNT = 0;
 const MAC_COMMENT_COUNT = 25;
@@ -39,7 +39,7 @@ export class TSVOfferGenerator implements OfferGenerator {
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
     const city = getRandomItem(this.mockData.cities);
-    const photoLinks = getRandomItems(this.mockData.photoLinks).join(';');
+    const photoLinks = getRandomCountItems(this.mockData.photoLinks, 6).join(';');
     const previewImage = getRandomItem(this.mockData.previewImages);
     const premium = generateRandomValue(0, 1) === 0;
     const favorite = generateRandomValue(0, 1) === 0;

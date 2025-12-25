@@ -2,24 +2,24 @@ import 'reflect-metadata';
 import { Container } from 'inversify';
 import { RestApplication } from './rest/index.js';
 import { Component } from './shared/types/index.js';
-import { restApplicationContainer } from './rest/rest.container.js';
-import { userContainer } from './shared/modules/user/user.container.js';
-import { offerContainer } from './shared/modules/offer/offer.container.js';
-import { commentContainer } from './shared/modules/comment/comment.container.js';
+import { createRestApplicationContainer } from './rest/rest.container.js';
+import { createUserContainer } from './shared/libs/modules/user/index.js';
+import { createOfferContainer } from './shared/libs/modules/offer/offer.container.js';
+import { createCommentContainer } from './shared/libs/modules/comment/comment.container.js';
+import { createFavoriteContainer } from './shared/libs/modules/favorite/favorite.container.js';
 
 
 async function bootstrap() {
-  const container = new Container();
-  await container.load(
-    restApplicationContainer,
-    userContainer,
-    offerContainer,
-    commentContainer,
+  const appContainer = Container.merge(
+    createRestApplicationContainer(),
+    createUserContainer(),
+    createOfferContainer(),
+    createCommentContainer(),
+    createFavoriteContainer(),
   );
 
-  const application = container.get<RestApplication>(Component.RestApplication);
+  const application = appContainer.get<RestApplication>(Component.RestApplication);
   await application.init();
 }
-
 
 bootstrap();

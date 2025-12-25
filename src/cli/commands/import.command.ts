@@ -1,19 +1,18 @@
-import { Commander} from './command.interface.js';
-import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
-import { getErrorMessage, getMongoURI, createOffer } from '../../shared/helpers/index.js';
-import { UserService } from '../../shared/modules/user/user-service.interface.js';
-import { DefaultOfferService, OfferModel, IOfferService } from '../../shared/modules/offer/index.js';
+import { createOffer, getErrorMessage, getMongoURI } from '../../shared/helpers/index.js';
 import { DatabaseClient, MongoDatabaseClient } from '../../shared/libs/database-client/index.js';
+import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
 import { ConsoleLogger, Logger } from '../../shared/libs/logger/index.js';
-import { DefaultUserService, UserModel } from '../../shared/modules/user/index.js';
+import { CommentModel } from '../../shared/libs/modules/comment/comment.entity.js';
+import { FavoriteModel } from '../../shared/libs/modules/favorite/favorite.entity.js';
+import { OfferService, DefaultOfferService, OfferModel } from '../../shared/libs/modules/offer/index.js';
+import { UserService, DefaultUserService, UserModel } from '../../shared/libs/modules/user/index.js';
 import { Offer } from '../../shared/types/index.js';
 import { DEFAULT_DB_PORT, DEFAULT_USER_PASSWORD } from './command.constant.js';
-import { FavoriteModel } from '../../shared/modules/favorite/favorite.entity.js';
-import { CommentModel } from '../../shared/modules/comment/comment.entity.js';
+import { Commander } from './command.interface.js';
 
 export class ImportCommander implements Commander {
   private userService: UserService;
-  private offerService: IOfferService;
+  private offerService: OfferService;
   private databaseClient: DatabaseClient;
   private logger: Logger;
   private salt: string;
@@ -28,11 +27,41 @@ export class ImportCommander implements Commander {
     this.databaseClient = new MongoDatabaseClient(this.logger);
   }
 
+  public getName(): string {
+    return '--import';
+  }
+
   private async onImportedLine(line: string, resolve: () => void) {
     const offer = createOffer(line);
-    console.log(offer);
     await this.saveOffer(offer);
     resolve();
+  }
+
+  private async saveOffer(offer: Offer) {
+    const user = await this.userService.findOrCreate({
+      ...offer.author,
+      password: DEFAULT_USER_PASSWORD
+    }, this.salt);
+
+    await this.offerService.create({
+      title: offer.title,
+      description: offer.description,
+      publishData: offer.publishData,
+      city: offer.city,
+      imageLink: offer.imageLink,
+      photoLinks: offer.photoLinks,
+      premium: offer.premium,
+      favourite: offer.favourite,
+      rating: offer.rating,
+      houseType: offer.houseType,
+      roomCount: offer.roomCount,
+      guestCount: offer.guestCount,
+      rentalPrice: offer.rentalPrice,
+      conveniences: offer.conveniences,
+      authorId: user.id,
+      commentsCount: offer.commentsCount,
+      coordinates: offer.coordinates,
+    });
   }
 
   private onCompleteImport(count: number) {
@@ -40,39 +69,12 @@ export class ImportCommander implements Commander {
     this.databaseClient.disconnect();
   }
 
-  private async saveOffer(offer: Offer) {
-    const user = await this.userService.findOrCreate({
-      ...offer.user,
-      password: DEFAULT_USER_PASSWORD
-    }, this.salt);
+  public async execute(filename: string, login: string, password: string,
+    host: string, dbname: string, salt: string): Promise<void> {
 
-    await this.offerService.create({
-      title: offer.title,
-      description: offer.description,
-      city: offer.city,
-      previewImage: offer.image,
-      images: offer.photo,
-      isPremium: offer.premium,
-      isFavorite: offer.favourite,
-      rating: offer.rating,
-      type: offer.houseType,
-      roomCount: offer.roomCount,
-      maxGuests: offer.guestCount,
-      price: offer.rentalPrice,
-      conveniences: offer.conveniences,
-      author: user.id,
-      coordinates: offer.coordinates,
-    });
-  }
-
-  public getName(): string {
-    return '--import';
-  }
-
-  public async execute(filename: string, login: string, password: string, host: string, dbname: string, salt: string): Promise<void> {
     const uri = getMongoURI(login, password, host, DEFAULT_DB_PORT, dbname);
+    this.logger.info(uri);
     this.salt = salt;
-
     await this.databaseClient.connect(uri);
 
     const fileReader = new TSVFileReader(filename.trim());
