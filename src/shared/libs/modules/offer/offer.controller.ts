@@ -104,6 +104,7 @@ export class OfferController extends BaseController {
     }
 
     const result = await this.offerService.find(limit);
+
     this.ok(res, fillDTO(OfferFullRdo, result));
   }
 
