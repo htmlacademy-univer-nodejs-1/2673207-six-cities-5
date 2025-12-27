@@ -69,6 +69,7 @@ export class CreateUpdateOfferDto {
   })
   public conveniences: ConvenientType[];
 
+  @IsMongoId({ message: 'authorId must be a valid Mongo ID' })
   public authorId: string;
 
   public commentsCount: number;
