@@ -42,6 +42,11 @@ export class UserEntity extends defaultClasses.TimeStamps{
     return this.password;
   }
 
+  public verifyPassword(password: string, salt: string) {
+    const hashPassword = createSHA256(password, salt);
+    return hashPassword === this.password;
+  }
+
   @prop({ required: false, default: 'обычный' })
   public type: 'обычный' | 'pro';
 }
