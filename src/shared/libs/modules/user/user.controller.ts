@@ -60,8 +60,18 @@ export class UserController extends BaseController {
     throw new Error('[UserController] Oops');
   }
 
-  public async check(_req: Request, _res: Response): Promise<void> {
-    throw new Error('[UserController] Oops');
+  public async check({ tokenPayload: { email }}: Request, res: Response): Promise<void> {
+    const foundedUser = await this.userService.findByEmail(email);
+
+    if (! foundedUser) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Unauthorized',
+        'UserController'
+      );
+    }
+
+    this.ok(res, fillDTO(LoggedUserRdo, foundedUser));
   }
 
   public async register({ body }: CreateUserRequest, res: Response): Promise<void> {
