@@ -10,6 +10,7 @@ import { OfferFullRdo } from './rdo/offer-full.rdo.js';
 import { UserService } from '../user/user-service.interface.js';
 import { StatusCodes } from 'http-status-codes';
 import { City } from '../../../types/city-type.enum.js';
+import { PrivateRouteMiddleware } from '../../rest/middleware/private-route.middleware.js';
 
 @injectable()
 export class OfferController extends BaseController {
@@ -65,6 +66,7 @@ export class OfferController extends BaseController {
       method: HttpMethod.Post,
       handler: this.createComment,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('offerId'),
         new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
       ]

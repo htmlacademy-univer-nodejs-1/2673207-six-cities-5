@@ -69,7 +69,6 @@ export class CreateUpdateOfferDto {
   })
   public conveniences: ConvenientType[];
 
-  @IsMongoId({ message: 'authorId must be MongoId' })
   public authorId: string;
 
   public commentsCount: number;
