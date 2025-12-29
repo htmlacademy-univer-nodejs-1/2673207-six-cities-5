@@ -21,8 +21,9 @@ export class AuthExceptionFilter implements ExceptionFilter {
     this.logger.error(`[AuthModule] ${error.message}`, error);
     res.status(error.httpStatusCode)
       .json({
-        type: 'AUTHORIZATION',
+        errorType: 'AUTHORIZATION',
         error: error.message,
+        details: [error.detail],
       });
   }
 }

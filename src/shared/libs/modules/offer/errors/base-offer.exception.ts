@@ -1,6 +1,6 @@
-import { HttpError } from '../../../../libs/rest/index.js';
+import { HttpError } from '../../../rest/index.js';
 
-export class BaseUserException extends HttpError {
+export class BaseOfferException extends HttpError {
   constructor(httpStatusCode: number, message: string, detail?: string) {
     super(httpStatusCode, message, detail);
   }

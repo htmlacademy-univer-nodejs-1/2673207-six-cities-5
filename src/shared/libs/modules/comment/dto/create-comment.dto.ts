@@ -10,9 +10,6 @@ export class CreateCommentDto {
   @Max(5, { message: 'Rate must be at most 5' })
   public rating: number;
 
-  @IsMongoId({ message: 'offerId must be a valid Mongo ID' })
-  public offerId: string;
-
   @IsMongoId({ message: 'userId must be a valid Mongo ID' })
   public userId: string;
 }

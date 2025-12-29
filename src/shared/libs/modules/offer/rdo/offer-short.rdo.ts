@@ -32,4 +32,7 @@ export class OfferShortRdo {
 
   @Expose()
   public createdAt: Date;
+
+  @Expose()
+  public commentsCount: number;
 }

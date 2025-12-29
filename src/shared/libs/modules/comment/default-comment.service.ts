@@ -8,28 +8,19 @@ import { CreateCommentDto } from './dto/create-comment.dto.js';
 @injectable()
 export class DefaultCommentService implements CommentService {
   constructor(
-    @inject(Component.CommentService) private readonly commentModel: types.ModelType<CommentEntity>
+    @inject(Component.CommentModel) private readonly commentModel: types.ModelType<CommentEntity>
   ){}
 
-  public async create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
-    const comment = await this.commentModel.create(dto);
+  public async create(offerId: string, dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
+    const comment = await this.commentModel.create({...dto, offerId});
     return comment.populate('userId');
   }
 
-  public async findByOfferId(offerId: string, count: number | null): Promise<DocumentType<CommentEntity>[]> {
-    const limit = count ?? 60;
+  public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
     return this.commentModel
       .find({ offerId })
-      .limit(limit)
+      .limit(50)
       .sort({ createdAt: 'desc' })
       .populate('userId');
-  }
-
-  public async deleteByOfferId(offerId: string): Promise<number | null> {
-    const result = await this.commentModel
-      .deleteMany({offerId})
-      .exec();
-
-    return result.deletedCount;
   }
 }

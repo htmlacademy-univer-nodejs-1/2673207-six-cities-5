@@ -8,9 +8,6 @@ export class CreateUserDto {
   @IsEmail({ message: 'email must be a valid address' })
   public email: string;
 
-  @IsString({ message: 'avatar is required'})
-  public avatar: string;
-
   @IsString({ message: 'password is required' })
   @Length(6, 12, { message: 'min length for password is 6, max is 12' })
   public password: string;

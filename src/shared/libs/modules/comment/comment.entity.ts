@@ -12,10 +12,15 @@ export interface CommentEntity extends defaultClasses.Base {}
 })
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class CommentEntity extends defaultClasses.TimeStamps {
-  @prop({ required: true })
+  @prop({
+    required: true,
+    validate: {
+      validator: (v: string) => v.length >= 5 && v.length <= 1024
+    },
+  })
   public text: string;
 
-  @prop({ required: true })
+  @prop({ default: () => new Date() })
   public publishDate: Date;
 
   @prop({

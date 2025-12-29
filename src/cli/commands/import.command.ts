@@ -73,7 +73,6 @@ export class ImportCommander implements Commander {
     host: string, dbname: string, salt: string): Promise<void> {
 
     const uri = getMongoURI(login, password, host, DEFAULT_DB_PORT, dbname);
-    this.logger.info(uri);
     this.salt = salt;
     await this.databaseClient.connect(uri);
 

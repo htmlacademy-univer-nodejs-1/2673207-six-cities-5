@@ -83,28 +83,18 @@ paths:
                   token:
                     type: string
                     description: JWT токен
-        '401':
-          description: Неверный логин или пароль
+                  email:
+                    type: string
+                    format: email
+        '404':
+          description: пользователь не найден
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /users/logout:
-    post:
-      tags: [Users]
-      summary: Выход из закрытой части приложения
-      description: |
-        Завершение пользовательского сеанса.
-        Доступно только авторизованным клиентам.
-      operationId: logout
-      security:
-        - bearerAuth: []
-      responses:
-        '204':
-          description: Успешный выход из системы
         '401':
-          description: Неавторизованный доступ
+          description: пароль
           content:
             application/json:
               schema:
@@ -131,6 +121,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+
+  /users/{userId}/avatar:
+    post:
+      tags:
+        - Users
+      summary: Загрузить изображение аватара
+      description: Загружает изображение аватара пользователя. Изображение
+        аватара должно быть в формате `png` или `jpg`.
+      responses:
+          '201':
+            description: Аватар успешно загружен
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UploadUserAvatarRdo'
 
   /offers:
     get:
@@ -169,14 +174,6 @@ paths:
       operationId: createOffer
       security:
         - bearerAuth: []
-      parameters:
-      - in: query
-        name: email
-        schema:
-          type: string
-          format: email
-        description: Email пользователя, создающего предложение
-        required: true
       requestBody:
         required: true
         content:
@@ -360,14 +357,6 @@ paths:
       operationId: createComment
       security:
         - bearerAuth: []
-      parameters:
-        - in: path
-          name: offerId
-          required: true
-          schema:
-            type: string
-            pattern: '^[a-f\d]{24}$'
-          description: ID предложения
       requestBody:
         required: true
         content:
@@ -549,10 +538,19 @@ components:
         favourite:
           type: boolean
           example: true
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          example: 4.5
         houseType:
           type: string
           enum: [apartment, house, room, hotel]
           example: "apartment"
+        publishDate:
+          type: string
+          format: date-time
+          example: "2024-06-15T10:00:00Z"
         roomCount:
           type: integer
           minimum: 1
@@ -720,6 +718,17 @@ components:
           items:
             type: number
           example: [10.0, 23.456]
+        author:
+          $ref: '#/components/schemas/UserResponse'
+        publishDate:
+          type: string
+          format: date-time
+          example: "2024-06-15T10:00:00Z"
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          example: 4.5
 
 
 
@@ -765,6 +774,14 @@ components:
           type: integer
           example: 12
 
+    UploadUserAvatarRdo:
+      type: object
+      properties:
+        filepath:
+          type: string
+          format: uri
+          example: "https://example.com/uploads/avatar123.jpg"
+
     CreateCommentDto:
       type: object
       required: [text, rating]
@@ -779,6 +796,9 @@ components:
           minimum: 1
           maximum: 5
           example: 5
+        userId:
+          type: string
+          example: "507f1f77bcf86cd799439011"
 
     CommentResponse:
       type: object
@@ -792,7 +812,7 @@ components:
         rating:
           type: integer
           example: 5
-        createdAt:
+        publishDate:
           type: string
           format: date-time
           example: "2024-01-15T10:30:00Z"
@@ -815,21 +835,13 @@ components:
     ErrorResponse:
       type: object
       properties:
-        message:
+        errorType:
           type: string
-          example: "Ошибка валидации"
+        error:
+          type: string
         details:
           type: array
           items:
-            type: object
-            properties:
-              field:
-                type: string
-                example: "title"
-              message:
-                type: string
-                example: "Title is too short"
-        timestamp:
-          type: string
-          format: date-time
-          example: "2024-01-15T10:30:00Z"
+            type: string
+
+

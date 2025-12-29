@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Types } from 'mongoose';
-import { StatusCodes } from 'http-status-codes';
 import { Middleware } from './middleware.interface.js';
-import { HttpError } from '../errors/index.js';
+import { ValidationError } from '../errors/index.js';
 
 export class ValidateObjectIdMiddleware implements Middleware {
   constructor(private param: string) {}
@@ -14,10 +13,8 @@ export class ValidateObjectIdMiddleware implements Middleware {
       return next();
     }
 
-    throw new HttpError(
-      StatusCodes.BAD_REQUEST,
-      `${objectId} is invalid ObjectID`,
-      'ValidateObjectIdMiddleware'
+    throw new ValidationError(
+      `${objectId} is invalid ObjectID`, []
     );
   }
 }
